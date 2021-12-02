@@ -6,9 +6,9 @@ use lazy_static::lazy_static;
 use regex::Regex;
 
 enum Command {
-    forward(i32),
-    down(i32),
-    up(i32),
+    Forward(i32),
+    Up(i32),
+    Down(i32),
 }
 impl FromStr for Command {
     type Err = ();
@@ -17,9 +17,9 @@ impl FromStr for Command {
         let key = capture.get(1).unwrap().as_str();
         let number = capture.get(2).unwrap().as_str().parse::<i32>().unwrap();
         match key {
-            "forward" => Ok(Command::forward(number)),
-            "down" => Ok(Command::down(number)),
-            "up" => Ok(Command::up(number)),
+            "forward" => Ok(Command::Forward(number)),
+            "up" => Ok(Command::Up(number)),
+            "down" => Ok(Command::Down(number)),
             _ => Err(()),
         }
     }
@@ -46,9 +46,9 @@ pub fn part_1() -> i32 {
     let mut displacement: i32 = 0;
     for command in INPUT.iter() {
         match command {
-            Command::forward(i) => displacement += i,
-            Command::up(i) => depth -= i,
-            Command::down(i) => depth += i,
+            Command::Forward(i) => displacement += i,
+            Command::Up(i) => depth -= i,
+            Command::Down(i) => depth += i,
         }
     }
     depth * displacement
@@ -60,12 +60,12 @@ pub fn part_2() -> i32 {
     let mut aim: i32 = 0;
     for command in INPUT.iter() {
         match command {
-            Command::forward(i) => {
+            Command::Forward(i) => {
                 displacement += i;
                 depth += aim * i;
             }
-            Command::up(i) => aim -= i,
-            Command::down(i) => aim += i,
+            Command::Up(i) => aim -= i,
+            Command::Down(i) => aim += i,
         }
     }
     depth * displacement
