@@ -48,7 +48,11 @@ fn get_oxygen_rating(input: &Vec<i64>, bit_depth: usize) -> i64 {
                 count += 1;
             }
         }
-        if count as f32 >= (total as f32 / 2.0) {
+        if total == 1 {
+            if count == 1 {
+                rating |= 1 << bit_shift;
+            }
+        } else if count as f32 >= (total as f32 / 2.0) {
             rating |= 1 << bit_shift;
         }
     }
@@ -61,21 +65,23 @@ fn get_scrubber_rating(input: &Vec<i64>, bit_depth: usize) -> i64 {
         let bit_shift = bit_depth - 1 - index;
         let mut total: usize = 0;
         let mut count: usize = 0;
-        println!("{} {}", bit_shift, index);
 
-        for line in input
-            .iter()
-            .filter(|line| **line >> (bit_shift + 1) == rating >> (bit_shift + 1))
-        {
-            println!("{:0>5b}", line);
+        for line in input.iter().filter(|line| {
+            let letfmost_bits = bit_shift + 1;
+            **line >> letfmost_bits == rating >> letfmost_bits
+        }) {
             total += 1;
-            // check bit from right
+            // check index bit from right
             if line & (1 << bit_shift) > 0 {
                 count += 1;
             }
         }
-        // fixme this check is wrong
-        if (count as f32) >= (total as f32 / 2.0) {
+
+        if total == 1 {
+            if count == 1 {
+                rating |= 1 << bit_shift;
+            }
+        } else if (count as f32) < (total as f32 / 2.0) {
             rating |= 1 << bit_shift;
         }
     }
