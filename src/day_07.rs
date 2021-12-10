@@ -26,7 +26,6 @@ fn linear_error(input: &Vec<u64>, pivot: u64) -> u64 {
 fn find_linear_pivot(input: &Vec<u64>) -> u64 {
     let min = input.iter().min().unwrap();
     let max = input.iter().max().unwrap();
-    println!("{} {}", min, max);
     (*min..*max).map(|n| linear_error(&input, n)).min().unwrap()
 }
 
@@ -57,7 +56,6 @@ fn progressive_error(input: &Vec<u64>, pivot: u64) -> u64 {
 fn find_progressive_pivot(input: &Vec<u64>) -> u64 {
     let min = input.iter().min().unwrap();
     let max = input.iter().max().unwrap();
-    println!("{} {}", min, max);
     (*min..*max)
         .map(|n| progressive_error(&input, n))
         .min()

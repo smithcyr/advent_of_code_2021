@@ -115,7 +115,6 @@ fn decode_input(input: &Vec<String>) -> u32 {
     let mut total: u32 = 0;
     for line in input.iter() {
         let line_parts = line.split("|").collect::<Vec<&str>>();
-        println!("{:?}", line_parts);
         let sample_characters = line_parts[0]
             .trim()
             .split_whitespace()
