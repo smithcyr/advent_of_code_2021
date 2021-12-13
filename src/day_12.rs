@@ -109,12 +109,13 @@ fn calculate_paths_2(input: &HashMap<String, Vec<String>>) -> u32 {
     while walkers.len() > 0 {
         let mut next_walkers: Vec<Path> = Vec::new();
         for walker in walkers {
+            let has_double_visit = walker.has_double_visit();
             if let Some(paths) = input.get(walker.path.last().unwrap()) {
                 for next in paths.iter().filter(|p| {
                     p.chars().all(|c| char::is_uppercase(c))
                         || (*p != "start"
                             && walker.path.iter().filter(|prev| p == prev).count()
-                                < if walker.has_double_visit() { 1 } else { 2 })
+                                < if has_double_visit { 1 } else { 2 })
                 }) {
                     let mut prev_path = walker.path.clone();
                     prev_path.push(String::from(next));
