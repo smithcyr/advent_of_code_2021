@@ -12,6 +12,7 @@ use advent_of_code_2021::day_11;
 use advent_of_code_2021::day_12;
 use advent_of_code_2021::day_13;
 use advent_of_code_2021::day_14;
+use advent_of_code_2021::day_15;
 
 fn main() {
     println!("day 01 part 1: {:#?}", day_01::part_1());
@@ -42,4 +43,6 @@ fn main() {
     println!("day 13 part 2: {}", day_13::part_2());
     println!("day 14 part 1: {:#?}", day_14::part_1());
     println!("day 14 part 2: {:#?}", day_14::part_2());
+    println!("day 15 part 1: {:#?}", day_15::part_1());
+    println!("day 15 part 2: {:#?}", day_15::part_2());
 }
