@@ -126,24 +126,6 @@ pub fn part_2() -> u128 {
 mod test {
     use super::*;
     #[test]
-    fn test_parse_seed() {
-        let seed = String::from("NNCB");
-        assert_eq!(
-            parse_seed(&seed),
-            [
-                (String::from("N"), 2),
-                (String::from("C"), 1),
-                (String::from("B"), 1),
-                (String::from("NN"), 1),
-                (String::from("NC"), 1),
-                (String::from("NB"), 1),
-            ]
-            .iter()
-            .cloned()
-            .collect::<HashMap<String, u128>>()
-        )
-    }
-    #[test]
     fn test_part_1() {
         let initial = parse_seed(&String::from("NNCB"));
         let raw_input = String::from(
