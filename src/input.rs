@@ -9,7 +9,11 @@ pub fn load_resource(name: &str) -> String {
 }
 
 pub fn load_lines(name: &str) -> Vec<String> {
-    load_resource(name)
+    parse_lines(load_resource(name))
+}
+
+pub fn parse_lines(input: String) -> Vec<String> {
+    input
         .split('\n')
         .map(|s| String::from(s.to_string().trim()))
         .collect()
